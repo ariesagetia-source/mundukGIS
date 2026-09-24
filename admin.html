@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - SIG Desa Wisata Munduk</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 20px; background: #f4f4f9; color: #333; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        h2 { margin-top: 0; color: #2c3e50; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; color: #555; }
+        input, textarea { width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button { padding: 10px 20px; background: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        button:hover { background: #218838; }
+        #btn-reset { background: #6c757d; margin-left: 10px; }
+        #btn-reset:hover { background: #5a6268; }
+        table { width: 100%; border-collapse: collapse; margin-top: 30px; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #2c3e50; color: white; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        .action-btn { padding: 6px 12px; margin-right: 5px; border-radius: 4px; color: white; text-decoration: none; border: none; cursor: pointer; }
+        .btn-edit { background: #ffc107; color: black; }
+        .btn-delete { background: #dc3545; }
+        .nav-link { display: inline-block; margin-top: 20px; color: #007bff; text-decoration: none; }
+        .nav-link:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Panel Admin: Kelola Destinasi</h2>
+        <form id="dest-form">
+            <input type="hidden" id="dest-id">
+            
+            <label>Nama Destinasi:</label>
+            <input type="text" id="name" required placeholder="Contoh: Air Terjun Munduk">
+            
+            <label>Deskripsi:</label>
+            <textarea id="description" rows="3" required placeholder="Deskripsi singkat..."></textarea>
+            
+            <label>Kategori:</label>
+            <input type="text" id="category" required placeholder="Contoh: Air Terjun">
+            
+            <div style="display: flex; gap: 15px;">
+                <div style="flex: 1;">
+                    <label>Latitude (Garis Lintang):</label>
+                    <input type="number" step="any" id="lat" required placeholder="-8.2638">
+                </div>
+                <div style="flex: 1;">
+                    <label>Longitude (Garis Bujur):</label>
+                    <input type="number" step="any" id="lng" required placeholder="115.0601">
+                </div>
+            </div>
+            
+            <label>URL Gambar (Link Foto):</label>
+            <input type="url" id="image" required placeholder="https://picsum.photos/id/1015/300/200">
+            
+            <button type="submit">Simpan Destinasi</button>
+            <button type="button" id="btn-reset">Batal / Reset</button>
+        </form>
+
+        <table id="data-table">
+            <thead>
+                <tr>
+                    <th>Nama Destinasi</th>
+                    <th>Kategori</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data akan dimasukkan oleh JS -->
+            </tbody>
+        </table>
+        
+        <a href="index.html" class="nav-link">⬅ Kembali ke Peta Utama</a>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="admin.js"></script>
+</body>
+</html>
