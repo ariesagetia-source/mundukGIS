@@ -10,8 +10,7 @@ const tbody = document.querySelector('#data-table tbody');
 async function loadData() {
     tbody.innerHTML = '<tr><td colspan="3" style="text-align: center;">Memuat data...</td></tr>';
     
-    const { data, error } = await supabase
-        .from('destinations')
+    const { data, error } = await supabaseClient.from('destinations')
         .select('*')
         .order('id', { ascending: false });
     

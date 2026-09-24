@@ -21,8 +21,7 @@ async function loadDestinations() {
     listElement.innerHTML = '<p style="padding: 1rem; text-align: center;">Mengunduh data dari database...</p>';
     
     // Ambil data dari tabel 'destinations'
-    const { data: destinations, error } = await supabase
-        .from('destinations')
+    const { data: destinations, error } = await supabaseClient.from('destinations')
         .select('*');
 
     if (error) {
