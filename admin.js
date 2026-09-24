@@ -1,10 +1,7 @@
-// Menggunakan global object supabase dari CDN
-const { createClient } = supabase;
-
 // Koneksi ke Supabase
 const supabaseUrl = 'https://ljqalgcsgxjpllghfqfp.supabase.co'
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxqcWFsZ2NzZ3hqcGxsZ2hmcWZwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTAyNTQ0NjQsImV4cCI6MjEwNTgzMDQ2NH0.IZlLWsKUGeCWtH-VDuoz80cySvaPCZnj76RIzF5fZXY'
-const supabase = createClient(supabaseUrl, supabaseKey)
+const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey)
 
 const form = document.getElementById('dest-form');
 const tbody = document.querySelector('#data-table tbody');
@@ -66,7 +63,7 @@ window.editItem = function(id) {
 // Fungsi Hapus Data
 window.deleteItem = async function(id) {
     if(confirm('Yakin ingin menghapus destinasi ini?')) {
-        const { error } = await supabase.from('destinations').delete().eq('id', id);
+        const { error } = await supabaseClient.from('destinations').delete().eq('id', id);
         
         if(error) {
             alert('Gagal menghapus: ' + error.message);
@@ -101,11 +98,11 @@ form.addEventListener('submit', async (e) => {
 
     if (id) {
         // Update data yang sudah ada
-        const { error } = await supabase.from('destinations').update(destData).eq('id', id);
+        const { error } = await supabaseClient.from('destinations').update(destData).eq('id', id);
         submitError = error;
     } else {
         // Insert data baru
-        const { error } = await supabase.from('destinations').insert([destData]);
+        const { error } = await supabaseClient.from('destinations').insert([destData]);
         submitError = error;
     }
     

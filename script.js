@@ -1,10 +1,7 @@
-// Menggunakan global object supabase dari CDN
-const { createClient } = supabase;
-
 // Koneksi ke Supabase
 const supabaseUrl = 'https://ljqalgcsgxjpllghfqfp.supabase.co'
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxqcWFsZ2NzZ3hqcGxsZ2hmcWZwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTAyNTQ0NjQsImV4cCI6MjEwNTgzMDQ2NH0.IZlLWsKUGeCWtH-VDuoz80cySvaPCZnj76RIzF5fZXY'
-const supabase = createClient(supabaseUrl, supabaseKey)
+const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey)
 
 // Inisialisasi Peta (Koordinat pusat Munduk)
 const map = L.map('map').setView([-8.2600, 115.0750], 13);
